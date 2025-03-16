@@ -13,7 +13,7 @@ public class EmailResponse {
 
     private String email;
 
-    private String body;
+    private String message;
 
     private LocalDateTime sentAt;
 }

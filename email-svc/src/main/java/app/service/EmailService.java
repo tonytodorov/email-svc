@@ -10,6 +10,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -30,12 +32,12 @@ public class EmailService {
         message.setTo("tonytodorov11@gmail.com");
         message.setReplyTo(emailRequest.getEmail());
         message.setSubject(emailRequest.getTitle());
-        message.setText(emailRequest.getBody());
+        message.setText(emailRequest.getMessage());
 
         Email email = Email.builder()
                 .title(emailRequest.getTitle())
                 .email(emailRequest.getEmail())
-                .body(emailRequest.getBody())
+                .message(emailRequest.getMessage())
                 .sentAt(LocalDateTime.now())
                 .build();
 
@@ -46,5 +48,9 @@ public class EmailService {
         }
 
         return emailRepository.save(email);
+    }
+
+    public List<Email> getUserEmails(String email) {
+        return emailRepository.findAllByEmail(email);
     }
 }

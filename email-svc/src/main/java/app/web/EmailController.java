@@ -9,10 +9,10 @@ import app.web.dto.EmailResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/email")
@@ -23,6 +23,21 @@ public class EmailController {
     @Autowired
     public EmailController(EmailService emailService) {
         this.emailService = emailService;
+    }
+
+    @GetMapping("/{email}/all-emails")
+    public ResponseEntity<List<EmailResponse>> getUserEmails(@PathVariable String email) {
+
+        List<Email> userEmails = emailService.getUserEmails(email);
+
+        List<EmailResponse> list = userEmails
+                .stream()
+                .map(DtoMapper::fromEmail)
+                .toList();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(list);
     }
 
     @PostMapping

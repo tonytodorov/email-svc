@@ -27,7 +27,7 @@ public class Email {
     private String email;
 
     @Column(nullable = false)
-    private String body;
+    private String message;
 
     @Column(nullable = false)
     private LocalDateTime sentAt;

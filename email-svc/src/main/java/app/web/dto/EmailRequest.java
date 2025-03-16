@@ -1,17 +1,17 @@
 package app.web.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class EmailRequest {
 
-    @NotBlank
+    @NotNull
     private String title;
 
-    @NotBlank
+    @NotNull
     private String email;
 
-    @NotBlank
-    private String body;
+    @NotNull
+    private String message;
 }

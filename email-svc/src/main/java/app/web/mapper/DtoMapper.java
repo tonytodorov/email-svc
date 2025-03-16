@@ -14,7 +14,7 @@ public class DtoMapper {
         return EmailResponse.builder()
                 .title(entity.getTitle())
                 .email(entity.getEmail())
-                .body(entity.getBody())
+                .message(entity.getMessage())
                 .sentAt(entity.getSentAt())
                 .build();
     }

@@ -4,8 +4,6 @@ import app.model.Email;
 import app.web.dto.EmailResponse;
 import lombok.experimental.UtilityClass;
 
-import java.time.LocalDateTime;
-
 @UtilityClass
 public class DtoMapper {
 
